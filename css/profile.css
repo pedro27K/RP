@@ -1,0 +1,469 @@
+/* ── Pantalla de Perfil ─────────────────────────────────────── */
+
+.profile-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: calc(100vh - 64px);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 40px;
+  gap: 40px;
+}
+
+/* ── Sidebar ────────────────────────────────────────────────── */
+.profile-sidebar {
+  background: var(--n0);
+  border-radius: 20px;
+  padding: 32px 24px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  height: fit-content;
+  position: sticky;
+  top: 80px;
+}
+
+.profile-avatar-wrap {
+  margin-bottom: 16px;
+}
+
+.profile-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue-500), var(--blue-800));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 800;
+  color: white;
+  box-shadow: 0 4px 16px rgba(0, 87, 184, 0.3);
+}
+
+.profile-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--n900);
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.profile-email {
+  font-size: 13px;
+  color: var(--n400);
+  text-align: center;
+  margin-bottom: 28px;
+  word-break: break-all;
+}
+
+.profile-sidenav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 28px;
+}
+
+.prof-sidenav-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--n600);
+  text-align: left;
+  transition: all 160ms;
+  cursor: pointer;
+}
+
+.prof-sidenav-btn:hover {
+  background: var(--n100);
+  color: var(--n900);
+}
+
+.prof-sidenav-btn.active {
+  background: var(--blue-100);
+  color: var(--blue-700);
+}
+
+.btn-logout {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--red);
+  border: 1.5px solid #FECACA;
+  background: #FEF2F2;
+  transition: all 160ms;
+  cursor: pointer;
+}
+
+.btn-logout:hover {
+  background: #FEE2E2;
+  border-color: var(--red);
+}
+
+/* ── Main content ───────────────────────────────────────────── */
+.profile-main {
+  min-width: 0;
+}
+
+.prof-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.prof-section-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--n900);
+}
+
+.prof-tab-panel {
+  animation: fadeIn 220ms ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Tarjetas de reserva ────────────────────────────────────── */
+.reserva-card {
+  background: var(--n0);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  padding: 24px 28px;
+  margin-bottom: 16px;
+  transition: box-shadow 200ms;
+}
+
+.reserva-card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.reserva-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.reserva-dest {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--n900);
+  margin-bottom: 4px;
+}
+
+.reserva-meta {
+  font-size: 13px;
+  color: var(--n500);
+}
+
+.reserva-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.estado-confirmada {
+  background: #DCFCE7;
+  color: #15803D;
+}
+
+.estado-pendiente {
+  background: #FEF9C3;
+  color: #854D0E;
+}
+
+.estado-cancelada {
+  background: #FEE2E2;
+  color: #991B1B;
+}
+
+.reserva-info-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--n100);
+}
+
+.reserva-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 110px;
+}
+
+.rinfo-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--n400);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.rinfo-val {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--n800);
+}
+
+.rinfo-price {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--blue-700);
+}
+
+/* ── Estados vacíos y loading ───────────────────────────────── */
+.prof-loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--n500);
+  font-size: 15px;
+}
+
+.prof-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 72px 20px;
+  text-align: center;
+  color: var(--n500);
+}
+
+.prof-empty p {
+  font-size: 16px;
+}
+
+/* ── Mis datos ──────────────────────────────────────────────── */
+.prof-datos-card {
+  background: var(--n0);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  padding: 32px;
+}
+
+.prof-datos-msg {
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.prof-datos-msg.success {
+  background: #DCFCE7;
+  color: #15803D;
+}
+
+.prof-datos-msg.error {
+  background: #FEE2E2;
+  color: #991B1B;
+}
+
+/* ── Modal error ────────────────────────────────────────────── */
+.modal-error {
+  font-size: 13px;
+  color: var(--red);
+  font-weight: 600;
+  min-height: 18px;
+  margin-bottom: 6px;
+}
+
+.modal-success {
+  font-size: 13px;
+  color: var(--green);
+  font-weight: 600;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.modal-switch-text {
+  text-align: center;
+  font-size: 13px;
+  color: var(--n500);
+  margin-top: 16px;
+}
+
+.modal-switch-text a {
+  color: var(--blue-700);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.modal-switch-text a:hover {
+  text-decoration: underline;
+}
+
+/* ── Booking: campo requerido y error ───────────────────────── */
+.req {
+  color: var(--red);
+}
+
+.booking-error-msg {
+  background: #FEE2E2;
+  color: #991B1B;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+/* ── Seguro cancelación badge ───────────────────────────────── */
+.reserva-badge-seguro {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  background: #DCFCE7;
+  color: #15803D;
+  border: 1px solid #86EFAC;
+  white-space: nowrap;
+}
+
+/* ── Acciones de reserva ────────────────────────────────────── */
+.reserva-actions {
+  padding-top: 14px;
+  margin-top: 14px;
+  border-top: 1px solid var(--n100);
+  display: flex;
+  gap: 10px;
+}
+
+.btn-cancelar-viaje {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--red);
+  border: 1.5px solid #FECACA;
+  background: #FEF2F2;
+  cursor: pointer;
+  transition: all 160ms;
+}
+
+.btn-cancelar-viaje:hover {
+  background: #FEE2E2;
+  border-color: var(--red);
+}
+
+.cancel-confirm-box {
+  margin-top: 12px;
+  background: #FFF7ED;
+  border: 1.5px solid #FED7AA;
+  border-radius: 12px;
+  padding: 16px 20px;
+  font-size: 14px;
+  color: var(--n700);
+}
+
+.cancel-confirm-box p {
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.cancel-confirm-btns {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-cancel-confirm-yes {
+  padding: 9px 22px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+  background: var(--red);
+  border: none;
+  cursor: pointer;
+  transition: background 160ms;
+  font-family: var(--font);
+}
+
+.btn-cancel-confirm-yes:hover:not(:disabled) {
+  background: #B91C1C;
+}
+
+.btn-cancel-confirm-yes:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-cancel-confirm-no {
+  padding: 9px 22px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--n600);
+  background: var(--n100);
+  border: none;
+  cursor: pointer;
+  transition: background 160ms;
+  font-family: var(--font);
+}
+
+.btn-cancel-confirm-no:hover {
+  background: var(--n200);
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .profile-layout {
+    grid-template-columns: 1fr;
+    padding: 24px 20px;
+    gap: 24px;
+  }
+
+  .profile-sidebar {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    padding: 24px;
+  }
+
+  .profile-sidenav {
+    flex-direction: row;
+    margin-bottom: 0;
+    width: auto;
+  }
+
+  .profile-avatar-wrap { order: -1; width: 100%; display: flex; justify-content: center; }
+
+  .reserva-info-row {
+    gap: 16px;
+  }
+}

@@ -1,0 +1,453 @@
+/* ── Formulario de reserva ────────────────────────────────────── */
+.booking-form-layout {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 40px 80px;
+}
+
+.steps-bar {
+  display: flex;
+  gap: 0;
+  margin-bottom: 40px;
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.step-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: all 200ms;
+}
+
+.step-circle.done {
+  background: var(--green);
+  color: white;
+}
+
+.step-circle.active {
+  background: var(--blue-700);
+  color: white;
+}
+
+.step-circle.pending {
+  background: var(--n200);
+  color: var(--n500);
+}
+
+.step-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--n400);
+  margin-left: 10px;
+}
+
+.step-label.active {
+  font-weight: 700;
+  color: var(--blue-900);
+}
+
+.step-line {
+  flex: 1;
+  height: 1px;
+  background: var(--n200);
+  margin: 0 16px;
+}
+
+.form-panel {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: var(--shadow-md);
+}
+
+.form-panel h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--blue-900);
+  margin-bottom: 24px;
+}
+
+.traveler-block {
+  margin-bottom: 28px;
+}
+
+.traveler-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--blue-700);
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--n100);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-add-traveler {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--blue-700);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 150ms;
+}
+
+.btn-add-traveler:hover {
+  color: var(--blue-900);
+}
+
+.btn-remove-traveler {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--red);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px 8px;
+  border-radius: 6px;
+  transition: background 150ms;
+}
+
+.btn-remove-traveler:hover {
+  background: #FEE2E2;
+}
+
+.form-row {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.form-row.cols2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.form-row.cols3 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.form-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--n700);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1.5px solid var(--n300);
+  font-size: 14px;
+  font-family: var(--font);
+  outline: none;
+  transition: border-color 200ms;
+}
+
+.form-input:focus {
+  border-color: var(--blue-700);
+}
+
+.ssl-notice {
+  background: var(--blue-50);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.ssl-notice span {
+  font-size: 14px;
+  color: var(--n700);
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.btn-form-back {
+  background: white;
+  color: var(--blue-700);
+  border: 1.5px solid var(--blue-700);
+  padding: 11px 24px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 200ms;
+}
+
+.btn-form-back:hover {
+  background: var(--blue-50);
+}
+
+.btn-form-next {
+  background: var(--blue-700);
+  color: white;
+  padding: 12px 36px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 200ms;
+}
+
+.btn-form-next:hover {
+  background: var(--blue-900);
+}
+
+.btn-form-pay {
+  background: var(--green);
+  color: white;
+  padding: 13px 0;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  flex: 1;
+  transition: background 200ms;
+}
+
+.btn-form-pay:hover {
+  background: #15803d;
+}
+
+/* ── Opción de cancelación ──────────────────────────────────── */
+.cancel-option-box {
+  background: #F0FDF4;
+  border: 1.5px solid #86EFAC;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  cursor: pointer;
+  transition: background 160ms, border-color 160ms;
+}
+
+.cancel-option-box:hover {
+  background: #DCFCE7;
+  border-color: #4ADE80;
+}
+
+.cancel-option-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+}
+
+.cancel-option-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  accent-color: var(--green);
+  cursor: pointer;
+}
+
+.cancel-option-content {
+  flex: 1;
+}
+
+.cancel-option-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--n800);
+  margin-bottom: 4px;
+}
+
+.cancel-option-desc {
+  font-size: 12px;
+  color: var(--n500);
+  line-height: 1.4;
+}
+
+.cancel-option-price {
+  font-size: 15px;
+  font-weight: 800;
+  color: #15803D;
+  white-space: nowrap;
+  min-width: 60px;
+  text-align: right;
+}
+
+/* Summary sidebar */
+.summary-panel {
+  background: white;
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  padding: 24px;
+  height: fit-content;
+  position: sticky;
+  top: 88px;
+}
+
+.summary-panel h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--blue-900);
+  margin-bottom: 16px;
+}
+
+.summary-img {
+  height: 100px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+
+.summary-dest-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--blue-900);
+  margin-bottom: 4px;
+}
+
+.summary-dest-meta {
+  font-size: 13px;
+  color: var(--n500);
+  margin-bottom: 20px;
+}
+
+.summary-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--n100);
+}
+
+.summary-row .sk {
+  color: var(--n500);
+}
+
+.summary-row .sv {
+  font-weight: 600;
+  color: var(--n800);
+}
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--blue-900);
+  margin-top: 4px;
+}
+
+.summary-total .st-val {
+  color: var(--amber);
+}
+
+/* ── Tarjetas de selección de vehículo ─────────────────────────── */
+.car-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.car-card {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--n200);
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 180ms, box-shadow 180ms;
+  background: white;
+}
+
+.car-card:hover {
+  border-color: var(--blue-300, #93c5fd);
+  box-shadow: 0 4px 16px rgba(0,0,0,.08);
+}
+
+.car-card.selected {
+  border-color: var(--blue-700);
+  box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+}
+
+.car-card input[type="radio"] {
+  display: none;
+}
+
+.car-card-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: var(--n100);
+}
+
+.car-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.car-card-none {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.car-card-body {
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.car-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--n900);
+}
+
+.car-cat {
+  font-size: 12px;
+  color: var(--n500);
+  font-weight: 500;
+}
+
+.car-price {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--blue-700);
+  margin-top: 6px;
+}
+
+.car-price-sub {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--n500);
+}

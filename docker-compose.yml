@@ -1,0 +1,58 @@
+services:
+
+  app:
+    build: .
+    container_name: rp_app
+    ports:
+      - "8080:80"       # Web en http://localhost:8080
+    volumes:
+      - .:/var/www/html # Cambios en vivo sin reconstruir
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DB_HOST=db
+      - DB_USER=rp_user
+      - DB_PASS=rp_password
+      - DB_NAME=rp_travels
+      - MAIL_USER=${MAIL_USER}
+      - MAIL_PASS=${MAIL_PASS}
+
+  db:
+    image: mysql:8.0
+    container_name: rp_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: rp_travels
+      MYSQL_USER: rp_user
+      MYSQL_PASSWORD: rp_password
+      TZ: Europe/Madrid
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./sql/rp.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "rp_user", "-prp_password"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 120s
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: rp_phpmyadmin
+    ports:
+      - "8081:80"       # phpMyAdmin en http://localhost:8081
+    environment:
+      PMA_HOST: db
+      PMA_USER: rp_user
+      PMA_PASSWORD: rp_password
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  db_data:

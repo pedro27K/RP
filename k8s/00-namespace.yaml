@@ -1,0 +1,5 @@
+# Namespace propio para aislar todos los recursos de RP Travels
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: rp-travels

@@ -1,0 +1,146 @@
+/* ── Navegación ────────────────────────────────────────────── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: white;
+  border-bottom: 1px solid var(--n200);
+  height: 68px;
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+  gap: 32px;
+  box-shadow: 0 1px 4px rgba(0, 57, 184, 0.05);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.nav-logo-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--blue-700);
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  gap: 4px;
+}
+
+.nav-logo-rp {
+  font-weight: 900;
+  font-size: 16px;
+  color: var(--blue-900);
+  letter-spacing: 0.5px;
+}
+
+.nav-logo-travels {
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--blue-700);
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+}
+
+.nav-tabs {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+}
+
+.nav-tab {
+  padding: 8px 13px;
+  border-radius: 7px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--n600);
+  cursor: pointer;
+  position: relative;
+  transition: all 150ms;
+  background: none;
+  border: none;
+}
+
+.nav-tab:hover {
+  color: var(--blue-700);
+  background: var(--blue-50);
+}
+
+.nav-tab.active {
+  color: var(--blue-700);
+  font-weight: 600;
+}
+
+.nav-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -23px;
+  left: 13px;
+  right: 13px;
+  height: 2px;
+  background: var(--blue-700);
+  border-radius: 999px;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.nav-phone {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--blue-900);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-cuenta {
+  background: var(--blue-700);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 200ms;
+}
+
+.btn-cuenta:hover {
+  background: var(--blue-900);
+}
+
+.btn-admin {
+  display: flex;
+  align-items: center;
+  background: var(--blue-700);
+  color: white;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 200ms;
+  white-space: nowrap;
+}
+
+.btn-admin:hover {
+  background: var(--blue-900);
+}
+
+.btn-admin.hidden {
+  display: none;
+}

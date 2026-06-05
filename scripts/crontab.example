@@ -1,0 +1,17 @@
+# ============================================================
+#  RP TRAVELS — AUTOMATIZACIÓN DE COPIAS DE SEGURIDAD (cron)
+# ------------------------------------------------------------
+#  Instalación en Linux:
+#    1) Edita la ruta de abajo para que apunte a tu proyecto.
+#    2) Instala la tarea:   crontab scripts/crontab.example
+#       (o copia la línea con:  crontab -e )
+#    3) Comprueba:           crontab -l
+#
+#  Formato:  min  hora  día-mes  mes  día-semana   comando
+# ============================================================
+
+# Copia diaria a las 03:00 de la madrugada
+0 3 * * *  /ruta/al/proyecto/RP/scripts/backup.sh >> /ruta/al/proyecto/RP/backups/cron.log 2>&1
+
+# (Opcional) Copia adicional los domingos a las 04:00, conservando 30 días
+0 4 * * 0  RETENTION_DAYS=30 /ruta/al/proyecto/RP/scripts/backup.sh >> /ruta/al/proyecto/RP/backups/cron.log 2>&1

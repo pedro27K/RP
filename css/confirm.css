@@ -1,0 +1,46 @@
+/* ── Confirmación ────────────────────────────────────────────── */
+.confirm-screen {
+  max-width: 600px;
+  margin: 80px auto;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.confirm-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #DCFCE7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+}
+
+.confirm-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--blue-900);
+  margin-bottom: 12px;
+}
+
+.confirm-ref {
+  font-size: 15px;
+  color: var(--n500);
+  margin-bottom: 8px;
+}
+
+.confirm-ref strong {
+  color: var(--blue-700);
+  font-size: 18px;
+  font-family: monospace;
+}
+
+.confirm-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  padding: 24px;
+  margin: 28px 0;
+  text-align: left;
+}

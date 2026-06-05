@@ -1,0 +1,52 @@
+# ============================================================
+#  APLICACIÓN WEB (PHP + Apache)
+#    · La imagen se construye con tu Dockerfile (ver k8s/README.md).
+#    · Service tipo NodePort -> accesible desde fuera del clúster.
+# ============================================================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rp-app
+  namespace: rp-travels
+  labels: { app: rp-app }
+spec:
+  replicas: 2                 # alta disponibilidad: 2 réplicas de la web
+  selector:
+    matchLabels: { app: rp-app }
+  template:
+    metadata:
+      labels: { app: rp-app }
+    spec:
+      containers:
+        - name: app
+          image: rp-travels-app:latest
+          imagePullPolicy: IfNotPresent   # imagen construida en local (minikube/k3s)
+          envFrom:
+            - secretRef:
+                name: rp-secrets
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            httpGet: { path: /, port: 80 }
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet: { path: /, port: 80 }
+            initialDelaySeconds: 20
+            periodSeconds: 20
+          resources:
+            requests: { memory: "128Mi", cpu: "100m" }
+            limits:   { memory: "256Mi", cpu: "500m" }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rp-app
+  namespace: rp-travels
+spec:
+  type: NodePort
+  selector: { app: rp-app }
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30080         # http://<IP-del-nodo>:30080

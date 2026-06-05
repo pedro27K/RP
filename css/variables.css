@@ -1,0 +1,91 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Colores primarios */
+  --blue-50: #F0F7FF;
+  --blue-100: #E8F2FC;
+  --blue-200: #C3DCF7;
+  --blue-500: #1A80E5;
+  --blue-600: #0066CC;
+  --blue-700: #0057B8;
+  --blue-800: #003F8A;
+  --blue-900: #003A7A;
+  --blue-950: #00245A;
+
+  /* Neutros */
+  --n0: #FFFFFF;
+  --n50: #F9FAFB;
+  --n100: #F3F4F6;
+  --n200: #E5E7EB;
+  --n300: #D1D5DB;
+  --n400: #9CA3AF;
+  --n500: #6B7280;
+  --n600: #4B5563;
+  --n700: #374151;
+  --n800: #1F2937;
+  --n900: #111827;
+
+  /* Acento */
+  --blue-300: #7DB8F0;
+  --amber: #E8A000;
+  --green: #16A34A;
+  --red: #DC2626;
+
+  /* Semánticos */
+  --brand: var(--blue-700);
+  --brand-dark: var(--blue-900);
+
+  /* Fuente */
+  --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Sombras */
+  --shadow-sm: 0 1px 4px rgba(0, 57, 184, 0.06);
+  --shadow-md: 0 2px 12px rgba(0, 57, 184, 0.08);
+  --shadow-lg: 0 8px 32px rgba(0, 57, 184, 0.14);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.14);
+}
+
+body {
+  font-family: var(--font);
+  color: var(--n900);
+  background: var(--n50);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: var(--font);
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input,
+select,
+textarea {
+  font-family: var(--font);
+}
+
+/* ── Utilidades ──────────────────────────────────────────────── */
+.hidden {
+  display: none !important;
+}
+
+.screen {
+  display: none;
+}
+
+.screen.active {
+  display: block;
+}

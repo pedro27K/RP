@@ -1,0 +1,12 @@
+ # Credenciales y configuración local
+.env
+
+# Copias de seguridad de la base de datos
+backups/
+
+# Dependencias PHP (Composer)
+vendor/
+
+# Archivos basura del sistema operativo
+.DS_Store
+Thumbs.db

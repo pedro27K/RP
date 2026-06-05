@@ -1,0 +1,82 @@
+# ============================================================
+#  BASE DE DATOS MySQL 8
+#    · PersistentVolumeClaim  -> los datos sobreviven a reinicios
+#    · Deployment             -> el contenedor mysql:8.0
+#    · Service (ClusterIP)    -> accesible como "rp-db" dentro del clúster
+#
+#  El esquema y los triggers se cargan en el primer arranque desde un ConfigMap llamado "rp-db-init" (ver k8s/README.md).
+# ============================================================
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rp-db-pvc
+  namespace: rp-travels
+spec:
+  accessModes: ["ReadWriteOnce"]
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rp-db
+  namespace: rp-travels
+  labels: { app: rp-db }
+spec:
+  replicas: 1
+  selector:
+    matchLabels: { app: rp-db }
+  strategy:
+    type: Recreate          # una BD no debe tener dos réplicas sobre el mismo volumen
+  template:
+    metadata:
+      labels: { app: rp-db }
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8.0
+          args:
+            - "--character-set-server=utf8mb4"
+            - "--collation-server=utf8mb4_unicode_ci"
+          envFrom:
+            - secretRef:
+                name: rp-secrets
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/mysql
+            - name: init
+              mountPath: /docker-entrypoint-initdb.d
+          readinessProbe:
+            exec:
+              command: ["sh", "-c", "mysqladmin ping -h 127.0.0.1 -u root -p\"$MYSQL_ROOT_PASSWORD\""]
+            initialDelaySeconds: 20
+            periodSeconds: 10
+          livenessProbe:
+            exec:
+              command: ["sh", "-c", "mysqladmin ping -h 127.0.0.1 -u root -p\"$MYSQL_ROOT_PASSWORD\""]
+            initialDelaySeconds: 40
+            periodSeconds: 20
+          resources:
+            requests: { memory: "256Mi", cpu: "100m" }
+            limits:   { memory: "512Mi", cpu: "500m" }
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: rp-db-pvc
+        - name: init
+          configMap:
+            name: rp-db-init
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rp-db
+  namespace: rp-travels
+spec:
+  selector: { app: rp-db }
+  ports:
+    - port: 3306
+      targetPort: 3306

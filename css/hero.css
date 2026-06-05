@@ -1,0 +1,409 @@
+/* ── Hero ───────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  height: 540px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* overflow: hidden eliminado — recortaba el dropdown del calendario */
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 20, 60, 0.18);
+  z-index: 1;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1400px;
+  padding: 56px 40px 52px;
+}
+
+.hero-tag {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.hero-title {
+  text-align: center;
+  font-size: 48px;
+  font-weight: 800;
+  color: white;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 32px;
+}
+
+/* ── Buscador ───────────────────────────────────────────────── */
+.search-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.22), 0 4px 16px rgba(0, 30, 80, 0.12);
+  overflow: visible;
+  width: 100%;
+}
+
+.search-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--n200);
+  border-radius: 20px 20px 0 0;
+  overflow: hidden;
+}
+
+.search-tab {
+  flex: 1;
+  padding: 14px 8px;
+  background: var(--n50);
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--n500);
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  transition: all 150ms;
+}
+
+.search-tab:hover {
+  background: white;
+  color: var(--blue-700);
+}
+
+.search-tab.active {
+  background: white;
+  border-bottom-color: var(--blue-700);
+  color: var(--blue-700);
+  font-weight: 700;
+}
+
+.search-fields {
+  padding: 28px 32px 28px;
+  display: grid;
+  gap: 20px;
+  align-items: flex-end;
+}
+
+.search-fields.vuelos {
+  grid-template-columns: 1.4fr 1.6fr auto;
+}
+
+.search-fields.hoteles {
+  grid-template-columns: 1fr auto;
+}
+
+.search-fields.paquetes {
+  grid-template-columns: 1fr auto;
+}
+
+.search-fields.cruceros {
+  grid-template-columns: 1.4fr 1.4fr auto;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--n500);
+  letter-spacing: 0.04em;
+}
+
+.field-input {
+  width: 100%;
+  height: 40px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1.5px solid var(--n300);
+  font-size: 14px;
+  font-family: var(--font);
+  outline: none;
+  transition: border-color 200ms;
+  background: white;
+  color: var(--n900);
+}
+
+.field-input:focus {
+  border-color: var(--blue-700);
+}
+
+.field-input::placeholder {
+  color: var(--n400);
+}
+
+select.field-input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239CA3AF' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+.btn-buscar {
+  background: var(--blue-700);
+  color: white;
+  padding: 11px 28px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  transition: background 200ms;
+  align-self: flex-end;
+}
+
+.btn-buscar:hover {
+  background: var(--blue-900);
+}
+
+/* ── Calendario personalizado ────────────────────────────────── */
+.cal-wrapper {
+  position: relative;
+}
+
+.cal-input-btn {
+  width: 100%;
+  height: 40px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1.5px solid var(--n300);
+  font-size: 13px;
+  font-family: var(--font);
+  background: white;
+  color: var(--n900);
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: border-color 200ms;
+  overflow: hidden;
+}
+
+.cal-input-btn span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+}
+
+.cal-input-btn:hover,
+.cal-input-btn.open {
+  border-color: var(--blue-700);
+}
+
+.cal-input-btn .cal-placeholder {
+  color: var(--n400);
+}
+
+.cal-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 300;
+  background: white;
+  border-radius: 16px;
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--n200);
+  padding: 20px;
+  min-width: 320px;
+  display: none;
+  animation: calFadeIn 180ms ease;
+}
+
+.cal-dropdown.visible {
+  display: block;
+}
+
+@keyframes calFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.cal-nav-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--n100);
+  cursor: pointer;
+  border: none;
+  font-size: 16px;
+  color: var(--n700);
+  transition: all 150ms;
+}
+
+.cal-nav-btn:hover {
+  background: var(--blue-100);
+  color: var(--blue-700);
+}
+
+.cal-month-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--blue-900);
+}
+
+.cal-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 8px;
+}
+
+.cal-wd {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--n400);
+  padding: 4px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.cal-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.cal-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--n700);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 150ms;
+}
+
+.cal-day:hover:not(.cal-day-empty):not(.cal-day-past) {
+  background: var(--blue-100);
+  color: var(--blue-700);
+}
+
+.cal-day.cal-day-empty {
+  cursor: default;
+}
+
+.cal-day.cal-day-past {
+  color: var(--n300);
+  cursor: default;
+}
+
+.cal-day.cal-day-selected {
+  background: var(--blue-700);
+  color: white;
+  font-weight: 700;
+}
+
+.cal-day.cal-day-today {
+  border: 2px solid var(--blue-300);
+  color: var(--blue-700);
+  font-weight: 700;
+}
+
+.cal-day.cal-day-in-range {
+  background: var(--blue-100);
+  color: var(--blue-700);
+  border-radius: 0;
+}
+
+.cal-day.cal-day-range-start {
+  border-radius: 8px 0 0 8px;
+}
+
+.cal-day.cal-day-range-end {
+  border-radius: 0 8px 8px 0;
+}
+
+.cal-footer {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--n200);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cal-selected-info {
+  font-size: 13px;
+  color: var(--n500);
+}
+
+.cal-selected-info strong {
+  color: var(--blue-900);
+}
+
+.btn-cal-clear {
+  font-size: 12px;
+  color: var(--n400);
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: var(--font);
+  text-decoration: underline;
+}
+
+.btn-cal-clear:hover {
+  color: var(--red);
+}
+
+/* Overlay para cerrar calendario (ya no se activa — se usa listener en document) */
+#cal-overlay {
+  display: none;
+}
