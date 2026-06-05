@@ -13,7 +13,9 @@ RUN echo 'sendmail_path = "/usr/bin/msmtp -t"' \
     > /usr/local/etc/php/conf.d/mail.ini
 
 # Apache — desactivar MPMs extra para evitar conflicto AH00534
-RUN a2dismod mpm_event mpm_worker 2>/dev/null || true && a2enmod mpm_prefork rewrite headers
+RUN sed -i 's/^LoadModule mpm_event_module/#LoadModule mpm_event_module/' /etc/apache2/mods-enabled/mpm_event.load 2>/dev/null || true \
+    && sed -i 's/^LoadModule mpm_worker_module/#LoadModule mpm_worker_module/' /etc/apache2/mods-enabled/mpm_worker.load 2>/dev/null || true
+RUN a2enmod rewrite headers
 RUN echo 'AddType video/mp4 .mp4' >> /etc/apache2/mime.types
 
 # Entrypoint: genera msmtprc con las credenciales de entorno y arranca Apache
