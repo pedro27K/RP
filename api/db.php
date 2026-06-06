@@ -4,7 +4,8 @@ require_once __DIR__ . '/config.php';
 function obtenerBD(): PDO {
     static $pdo = null;
     if ($pdo === null) {
-        $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4";
+        $puerto = defined('DB_PORT') ? DB_PORT : 3306;
+        $dsn = "mysql:host=" . DB_HOST . ";port=" . $puerto . ";dbname=" . DB_NAME . ";charset=utf8mb4";
         $opciones = [
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
