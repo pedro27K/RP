@@ -83,16 +83,7 @@ RP/
 
 La base de datos es **relacional (MySQL 8)** y consta de 14 tablas. El diagrama
 muestra las entidades, sus claves primarias y foráneas y las relaciones.
-
-![Diagrama Entidad/Relación de RP Travels](<img width="1923" height="1921" alt="diagrama_bbdd" src="https://github.com/user-attachments/assets/df2f0479-a985-4355-bb52-de87510f21c7" />
-)
-
-- **Relación 1:N** (uno a muchos): por ejemplo `destinos` → `paquetes`,
-  `reservas` → `viajeros` o `reservas` → `pagos`.
-- **Relación N:M** (muchos a muchos): `usuarios` ↔ `paquetes`, resuelta mediante
-  la tabla intermedia **`reservas`** (un usuario puede reservar muchos paquetes y
-  un paquete puede ser reservado por muchos usuarios). `reservas` es una *entidad
-  asociativa* porque además guarda datos propios de la reserva (fechas, precio…).
+![Diagrama BBDD de RP Travels](docs/diagrama_bbdd.png) 
 
 El script completo de la base de datos está en [`sql/rp.sql`](sql/rp.sql).
 Incluye las tablas con sus datos, los triggers de auditoría y los usuarios de BD
