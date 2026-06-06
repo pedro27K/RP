@@ -1,12 +1,6 @@
 # Manual de usuario — RP Travels
 
-Guía práctica para usar la aplicación. Donde aparece una imagen
-(`![...]`), sustituye el marcador por una captura real de tu aplicación
-funcionando. Guarda las capturas en `docs/img/` con el nombre indicado.
-
-> 💡 **Cómo hacer las capturas**: abre la web en el navegador, ve a cada
-> pantalla descrita y captura (en Windows, `Win + Shift + S`). Guarda el PNG
-> en `docs/img/` con el nombre del marcador.
+Guía práctica para usar la aplicación.
 
 ---
 
