@@ -83,8 +83,8 @@ RP/
 
 La base de datos es **relacional (MySQL 8)** y consta de 14 tablas. El diagrama
 muestra las entidades, sus claves primarias y foráneas y las relaciones.
-
-![Diagrama Entidad/Relación de RP Travels](docs/diagrama_bbdd.png)
+![Diagrama Entidad/Relación de RP Travels](docs/diagrama_er.png)
+![Diagrama BBDD de RP Travels](docs/diagrama_bbdd.png) 
 
 El script completo de la base de datos está en [`sql/rp.sql`](sql/rp.sql).
 Incluye las tablas con sus datos, los triggers de auditoría y los usuarios de BD
