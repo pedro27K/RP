@@ -127,23 +127,45 @@ function _formatViajeros(int $adultos, int $ninos): string
 
 function _sendMail(string $to, string $subject, string $html): bool
 {
-    $from    = getenv('MAIL_USER') ?: 'no-reply@rptravels.es';
-    $headers = "MIME-Version: 1.0\r\n"
-             . "Content-Type: text/html; charset=UTF-8\r\n"
-             . "From: RP Travels <{$from}>\r\n";
+    $autoload = __DIR__ . '/../vendor/autoload.php';
+    if (!file_exists($autoload)) {
+        error_log('[RP mail] vendor/autoload.php no encontrado');
+        return false;
+    }
+    require_once $autoload;
 
-    // RFC 2047: Codificación en Base64
-    $encodedSubject = '=?UTF-8?B?' . base64_encode($subject) . '?=';
+    $mailUser = getenv('MAIL_USER') ?: '';
+    $mailPass = getenv('MAIL_PASS') ?: '';
 
-    $ok = mail($to, $encodedSubject, $html, $headers);
-
-    if (!$ok) {
-        error_log('[RP mail] FALLÓ el envío a ' . $to . ' | asunto: ' . $subject);
-    } else {
-        error_log('[RP mail] Enviado a ' . $to . ' | asunto: ' . $subject);
+    if (!$mailUser || !$mailPass) {
+        error_log('[RP mail] MAIL_USER o MAIL_PASS no configurados');
+        return false;
     }
 
-    return $ok;
+    $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
+    try {
+        $mail->isSMTP();
+        $mail->Host       = 'smtp.gmail.com';
+        $mail->SMTPAuth   = true;
+        $mail->Username   = $mailUser;
+        $mail->Password   = $mailPass;
+        $mail->SMTPSecure = \PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port       = 587;
+        $mail->CharSet    = 'UTF-8';
+
+        $mail->setFrom($mailUser, 'RP Travels');
+        $mail->addAddress($to);
+        $mail->isHTML(true);
+        $mail->Subject = $subject;
+        $mail->Body    = $html;
+
+        $mail->send();
+        error_log('[RP mail] Enviado a ' . $to . ' | asunto: ' . $subject);
+        return true;
+    } catch (\PHPMailer\PHPMailer\Exception $e) {
+        error_log('[RP mail] FALLÓ el envío a ' . $to . ' | ' . $mail->ErrorInfo);
+        return false;
+    }
 }
 
 function _buildEmailHtml(
