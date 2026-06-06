@@ -22,9 +22,9 @@ Ciclo: Grado Superior de ASIR · Curso académico 2025/2026
 ## Enlaces
 
 | 📄 Anteproyecto (PDF público) | `https://versed-bronze-497.notion.site/Anteproyecto-Web-Agencia-de-Viajes-b117a99ff980825595e401c33bd304ab` |
-| 🌐 Aplicación desplegada       | `<pega aquí la URL>` |
-| 🎬 Vídeo de presentación (máx. 10 min) | `<pega aquí el enlace de YouTube/Vimeo>` |
-| 🗂️ Repositorio                 | `<pega aquí la URL del repo público>` |
+| 🌐 Aplicación desplegada       | `https://rp-travels.onrender.com/index.php` |
+| 🎬 Vídeo de presentación (máx. 10 min) | `youtube.com` |
+| 🗂️ Repositorio                 | `https://github.com/pedro27K/RP/` |
 
 ---
 
