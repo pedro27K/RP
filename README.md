@@ -236,6 +236,9 @@ Guía paso a paso con capturas en [`docs/manual_usuario.md`](docs/manual_usuario
 ---
 
 ## Autoría
-
-Proyecto desarrollado como Trabajo de Fin de Grado del Ciclo Superior de ASIR,
 curso 2025/2026.
+
+Autores
+
+**Pedro Trujillo Jurca**
+**Raquel Romero Morilla**
