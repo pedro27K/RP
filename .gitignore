@@ -10,3 +10,4 @@ vendor/
 # Archivos basura del sistema operativo
 .DS_Store
 Thumbs.db
+sql/rp-filess.sql 

@@ -358,6 +358,7 @@ try {
             $stmt = $db->prepare("UPDATE reservas SET estado = 'cancelada' WHERE id = :id");
             $stmt->execute([':id' => $reservaId]);
 
+            // Obtener datos para el email antes de responder
             require_once __DIR__ . '/../admin/send-booking-email.php';
             $stmtMail = $db->prepare("
                 SELECT r.referencia, r.fecha_salida, r.fecha_regreso,
@@ -378,11 +379,28 @@ try {
             ");
             $stmtMail->execute([$reservaId]);
             $datosReserva = $stmtMail->fetch();
-            if ($datosReserva && $datosReserva['cli_email']) {
-                enviarCorreoCancelacion($datosReserva);
-            }
 
-            respuestaJson(['success' => true]);
+            // Responder al cliente inmediatamente
+            $respuesta = json_encode(['success' => true]);
+            http_response_code(200);
+            header('Content-Length: ' . strlen($respuesta));
+            echo $respuesta;
+            if (function_exists('fastcgi_finish_request')) {
+                fastcgi_finish_request();
+            } elseif (ob_get_level() > 0) {
+                ob_end_flush();
+            }
+            flush();
+
+            // Email de cancelación después de responder
+            try {
+                if ($datosReserva && $datosReserva['cli_email']) {
+                    enviarCorreoCancelacion($datosReserva);
+                }
+            } catch (Exception $e) {
+                error_log('[RP mail] Error al enviar email de cancelación: ' . $e->getMessage());
+            }
+            exit;
 
         default:
             respuestaJson(['error' => 'Acción no válida'], 400);
