@@ -34,7 +34,7 @@ Introduce tu correo y contraseña.
 
 ## 4. Buscar y filtrar viajes
 
-Usa el buscador (origen, tipo de viaje, fechas) para ver los resultados.
+Usa el buscador tipo de viajes (arriba), origen y buscar para ver los resultados.
 ![Buscador](img/04-buscador.png)
 Puedes filtrar con los filtros que hay a la izquierda(precio, régimen, estrellas…).
 ![Resultados de búsqueda con filtros](img/05-resultados.png)
