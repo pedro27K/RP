@@ -1,4 +1,4 @@
-# RP Travels
+## RP Travels
 
 > **TFG del Ciclo Formativo de Grado Superior — Administración de Sistemas Informáticos en Red (ASIR)**
 
@@ -81,10 +81,11 @@ RP/
 
 ## Modelo de datos (Esquema E/R)
 
-La base de datos es **relacional (MySQL 8)** y consta de 11 tablas. El diagrama
-muestra las entidades, sus claves primarias (🔑) y foráneas (🔗) y las relaciones.
+La base de datos es **relacional (MySQL 8)** y consta de 14 tablas. El diagrama
+muestra las entidades, sus claves primarias y foráneas y las relaciones.
 
-![Diagrama Entidad/Relación de RP Travels](docs/diagrama_bbdd.png)
+![Diagrama Entidad/Relación de RP Travels](<img width="1923" height="1921" alt="diagrama_bbdd" src="https://github.com/user-attachments/assets/df2f0479-a985-4355-bb52-de87510f21c7" />
+)
 
 - **Relación 1:N** (uno a muchos): por ejemplo `destinos` → `paquetes`,
   `reservas` → `viajeros` o `reservas` → `pagos`.
