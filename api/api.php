@@ -272,27 +272,42 @@ try {
 
             $db->commit();
 
-            // Email al cliente: reserva recibida (pendiente de confirmación)
-            require_once __DIR__ . '/../admin/send-booking-email.php';
-            enviarCorreoNuevaReserva([
-                'email'              => $c['email'],
-                'referencia'         => $referencia,
-                'destino'            => $paquete['destino_nombre'],
-                'pais'               => $paquete['pais'],
-                'paquete'            => $paquete['paquete_nombre'],
-                'noches'             => $paquete['noches'],
-                'regimen'            => $paquete['regimen'],
-                'fecha_salida'       => $fechaSalida,
-                'fecha_regreso'      => $fechaRegreso,
-                'num_adultos'        => $numAdultos,
-                'num_ninos'          => $numNinos,
-                'seguro_cancelacion' => $seguroCancelacion,
-                'precio_total'       => $precio_total,
-                'coche_nombre'       => $cocheNombre,
-                'precio_coche'       => $precioCoche,
-            ]);
+            // Responder al cliente inmediatamente antes de intentar enviar el email
+            $respuesta = json_encode(['success' => true, 'referencia' => $referencia, 'precio_total' => $precio_total]);
+            http_response_code(200);
+            header('Content-Length: ' . strlen($respuesta));
+            echo $respuesta;
+            if (function_exists('fastcgi_finish_request')) {
+                fastcgi_finish_request();
+            } elseif (ob_get_level() > 0) {
+                ob_end_flush();
+            }
+            flush();
 
-            respuestaJson(['success' => true, 'referencia' => $referencia, 'precio_total' => $precio_total]);
+            // Email al cliente: reserva recibida (pendiente de confirmación)
+            try {
+                require_once __DIR__ . '/../admin/send-booking-email.php';
+                enviarCorreoNuevaReserva([
+                    'email'              => $c['email'],
+                    'referencia'         => $referencia,
+                    'destino'            => $paquete['destino_nombre'],
+                    'pais'               => $paquete['pais'],
+                    'paquete'            => $paquete['paquete_nombre'],
+                    'noches'             => $paquete['noches'],
+                    'regimen'            => $paquete['regimen'],
+                    'fecha_salida'       => $fechaSalida,
+                    'fecha_regreso'      => $fechaRegreso,
+                    'num_adultos'        => $numAdultos,
+                    'num_ninos'          => $numNinos,
+                    'seguro_cancelacion' => $seguroCancelacion,
+                    'precio_total'       => $precio_total,
+                    'coche_nombre'       => $cocheNombre,
+                    'precio_coche'       => $precioCoche,
+                ]);
+            } catch (Exception $e) {
+                error_log('[RP mail] Error al enviar email de reserva: ' . $e->getMessage());
+            }
+            exit;
 
         // ── Mis reservas (usuario autenticado) ─────────────
         case 'mis-reservas':
