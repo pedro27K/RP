@@ -81,7 +81,7 @@ RP/
 
 ## Modelo de datos (Esquema E/R)
 
-La base de datos es **relacional (MySQL 8)** y consta de 11 tablas. El diagrama
+La base de datos es **relacional (MySQL 8)** y consta de 14 tablas. El diagrama
 muestra las entidades, sus claves primarias (🔑) y foráneas (🔗) y las relaciones.
 
 ![Diagrama Entidad/Relación de RP Travels](docs/diagrama_bbdd.png)
