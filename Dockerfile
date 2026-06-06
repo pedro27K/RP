@@ -12,6 +12,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Instalar Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+# PHP: asegurar que $_ENV recibe las variables de entorno del sistema
+RUN echo 'variables_order = "EGPCS"' > /usr/local/etc/php/conf.d/custom.ini
+
 # Apache — desactivar MPMs extra para evitar conflicto AH00534
 RUN sed -i 's/^LoadModule mpm_event_module/#LoadModule mpm_event_module/' /etc/apache2/mods-enabled/mpm_event.load 2>/dev/null || true \
     && sed -i 's/^LoadModule mpm_worker_module/#LoadModule mpm_worker_module/' /etc/apache2/mods-enabled/mpm_worker.load 2>/dev/null || true
