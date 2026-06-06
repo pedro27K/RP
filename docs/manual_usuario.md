@@ -17,15 +17,15 @@ Al entrar en la web verás el buscador principal y los paquetes destacados.
 ![Página de inicio con el buscador](img/01-inicio.png)
 
 Desde el menú superior puedes navegar por tipos de viaje (vuelos, hoteles,
-cruceros…), iniciar sesión o registrarte.
+cruceros…), iniciar sesión o registrarte (Arriba a la derecha, boton  "Mi cuenta").
 
 ---
 
 ## 2. Registro de una cuenta
 
-1. Pulsa **"Iniciar sesión"** y luego **"Crear cuenta"**.
+1. Pulsa **"Mi cuenta"** y luego **"Crear cuenta"**.
 2. Rellena nombre, apellidos, correo y contraseña.
-3. Pulsa **"Registrarme"**.
+3. Pulsa **"Crear cuenta gratuita"**.
 
 ![Formulario de registro](img/02-registro.png)
 
@@ -33,9 +33,7 @@ cruceros…), iniciar sesión o registrarte.
 
 ## 3. Iniciar sesión
 
-Introduce tu correo y contraseña. Si la olvidaste, usa **"¿Has olvidado tu
-contraseña?"** para recibir un enlace de recuperación por correo.
-
+Introduce tu correo y contraseña.
 ![Pantalla de inicio de sesión](img/03-login.png)
 
 ---
@@ -43,9 +41,9 @@ contraseña?"** para recibir un enlace de recuperación por correo.
 ## 4. Buscar y filtrar viajes
 
 Usa el buscador (origen, tipo de viaje, fechas) para ver los resultados.
-Puedes afinar con los filtros laterales (precio, régimen, estrellas…).
-
-![Resultados de búsqueda con filtros](img/04-resultados.png)
+![Buscador](img/04-buscador.png)
+Puedes filtrar con los filtros que hay a la izquierda(precio, régimen, estrellas…).
+![Resultados de búsqueda con filtros](img/05-resultados.png)
 
 ---
 
@@ -54,13 +52,13 @@ Puedes afinar con los filtros laterales (precio, régimen, estrellas…).
 Al pulsar en un viaje verás su descripción, lo que incluye, el número de
 plazas disponibles y el precio por persona.
 
-![Detalle de un paquete](img/05-detalle.png)
+![Detalle de un paquete](img/06-detalle.png)
 
 ---
 
 ## 6. Hacer una reserva
 
-1. Pulsa **"Reservar"** en el paquete elegido.
+1. Pulsa **"Reservar ahira"** en el paquete elegido.
 2. Indica el número de adultos y niños y las fechas.
 3. Rellena los datos de cada viajero.
 4. (Opcional) Añade **seguro de cancelación** y **alquiler de coche**.
@@ -77,7 +75,8 @@ plazas disponibles y el precio por persona.
 
 ## 7. Tu perfil y tus reservas
 
-Desde **"Mi perfil"** puedes editar tus datos y consultar el historial de
+Desde **"Mi perfil"** (Nombre del usuario, botón verde arriba a la derecha) 
+puedes editar tus datos y consultar el historial de
 reservas. También puedes **cancelar** una reserva (si tienes seguro de
 cancelación se gestiona desde aquí).
 
@@ -88,8 +87,13 @@ cancelación se gestiona desde aquí).
 ## 8. Panel de administración
 
 > Sólo para usuarios administradores (`rol = 0`).
+Usuario: admin@rp.es 
+Contraseña: RPadmin123!
 
-Accede en `admin/login.php`. El panel permite:
+Puedes acceder iniciando sesión como usuario normal y darle arriba a la derecha "Panel de administrador"
+![Página principal con panel de administración](img/10-panel.png)
+
+O Acceder en `admin/login.php`. El panel permite:
 
 - **Dashboard** con KPIs: ingresos, reservas activas, destinos más visitados y usuarios.
 - Gestionar **paquetes** (crear, editar, activar/desactivar).
@@ -106,3 +110,4 @@ Accede en `admin/login.php`. El panel permite:
 ## 9. Cerrar sesión
 
 Pulsa tu nombre en el menú superior y selecciona **"Cerrar sesión"**.
+![Cerrar sesión](img/12-cerrar-sesion.png)
